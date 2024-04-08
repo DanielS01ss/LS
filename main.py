@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 from pyod.models.knn import KNN
+import os
 
 app = FastAPI()
 
@@ -33,3 +34,10 @@ def predict(p1:float, p2:float, p3:float, p4:float):
 @app.get("/")
 def read_root():
     return {"Hello":"World"}
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    uvicorn.run(app, host=os.environ['HOST'],
+                port=os.environ['PORT'])
+    
